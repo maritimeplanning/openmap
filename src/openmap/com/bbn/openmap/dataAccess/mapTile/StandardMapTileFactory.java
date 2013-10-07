@@ -828,6 +828,9 @@ public class StandardMapTileFactory extends CacheHandler implements MapTileFacto
     }
 
     private TilePathBuilder tilePathBuilder = null;
+    public void setTilePathBuilder(TilePathBuilder tpb) {
+        tilePathBuilder = tpb;
+    }
 
     /**
      * Creates a unique cache key for this tile based on zoom, x, y. This method
@@ -853,7 +856,7 @@ public class StandardMapTileFactory extends CacheHandler implements MapTileFacto
         Pattern px = Pattern.compile(rex, Pattern.CASE_INSENSITIVE);
         Pattern py = Pattern.compile(rey, Pattern.CASE_INSENSITIVE);
 
-        String startingPath;
+        protected String startingPath;
         boolean patternsUsed = false;
         boolean patternUseChecked = false;
 

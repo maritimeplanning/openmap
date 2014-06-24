@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Get the version to use for the generated jars
+if [ -z $1 ]; then
+	ver=""
+else
+	ver=-$1
+fi
+echo "Ver: " $ver
+
+if [ -d "dist" ]; then
+	rm -rf "dist"
+fi
+mkdir "dist"
+
+# Run ant with the 'all' target to build the classes and create the openmap.jar and the 'docs' target to build java documentation
+ant clean all docs
+
+# Copy the openmap.jar to the dist directory
+cp lib/openmap.jar dist/openmap${ver}.jar
+
+# Create the sources jar
+jar cf dist/openmap${ver}-sources.jar src
+
+# Create the javadoc jar
+jar cf dist/openmap${ver}-javadoc.jar doc/*
